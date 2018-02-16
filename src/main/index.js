@@ -1,7 +1,7 @@
 const path = require("path");
 const electron = require("electron");
-const LifxTray = require("./app/lifx_tray");
-const MainWindow = require("./app/main_window");
+const LifxTray = require("./lifx_tray");
+const MainWindow = require("./main_window");
 
 const { app, ipcMain } = electron;
 
@@ -14,7 +14,7 @@ app.on("ready", () => {
 
   const iconName =
     process.platform === "win32" ? "icon-white.ico" : "iconTemplate.png";
-  const iconPath = path.join(__dirname, `./src/assets/${iconName}`);
+  const iconPath = path.join(__dirname, `../assets/${iconName}`);
   tray = new LifxTray(iconPath, mainWindow);
 });
 

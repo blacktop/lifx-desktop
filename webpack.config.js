@@ -1,44 +1,43 @@
-var webpack = require('webpack');
-var path = require('path');
-var fs = require('fs');
+var webpack = require("webpack");
+var path = require("path");
+var fs = require("fs");
 
 var nodeModules = {};
-fs.readdirSync('node_modules')
+fs
+  .readdirSync("node_modules")
   .filter(function(x) {
-    return ['.bin'].indexOf(x) === -1;
+    return [".bin"].indexOf(x) === -1;
   })
   .forEach(function(mod) {
-    nodeModules[mod] = 'commonjs ' + mod;
+    nodeModules[mod] = "commonjs " + mod;
   });
 
 module.exports = {
   externals: nodeModules,
-  entry: [
-    './src/index.js'
-  ],
-  target: 'node',
+  entry: ["./src/renderer/index.js"],
+  target: "node",
   output: {
     path: __dirname,
-    publicPath: '/',
-    filename: 'bundle.js'
+    publicPath: "/",
+    filename: "bundle.js"
   },
   module: {
     loaders: [
       {
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-          presets: ['react', 'es2015', 'stage-1']
+          presets: ["react", "es2015", "stage-1"]
         }
-      },
+      }
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"]
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: './',
+    contentBase: "./",
     port: 4172
   }
 };

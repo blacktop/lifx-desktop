@@ -59,3 +59,4 @@ typings/
 
 # electron-builder
 dist/
+bundle.js
