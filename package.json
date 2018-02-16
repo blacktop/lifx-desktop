@@ -4,15 +4,15 @@
   "description": "LIFX Desktop electron-app",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "electron": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "build": {
     "appId": "io.blacktop.lifx-desktop",
     "directories": {
-      "buildResources": "icons"
+      "buildResources": "src/assets"
     },
     "mac": {
       "publish": ["github"],
@@ -34,8 +34,9 @@
   "license": "Apache 2.0",
   "devDependencies": {
     "devtron": "^1.4.0",
-    "electron": "~1.8.2",
-    "electron-builder": "^20.0.4"
+    "electron": "^1.8.2",
+    "electron-builder": "^20.0.4",
+    "electron-webpack": "^1.12.1"
   },
   "dependencies": {
     "babel-core": "^6.24.0",
@@ -52,7 +53,7 @@
     "react-dom": "^15.4.2",
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
-    "webpack": "^2.3.2",
+    "webpack": "^3.11.0",
     "webpack-dev-server": "^2.4.2"
   }
 }
