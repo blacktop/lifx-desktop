@@ -1,6 +1,6 @@
 const path = require("path");
 const electron = require("electron");
-const TimerTray = require("./app/lifx_tray");
+const LifxTray = require("./app/lifx_tray");
 const MainWindow = require("./app/main_window");
 
 const { app, ipcMain } = electron;
