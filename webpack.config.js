@@ -17,9 +17,9 @@ module.exports = {
   entry: ["./src/renderer/index.js"],
   target: "node",
   output: {
-    path: __dirname,
-    publicPath: "/",
-    filename: "bundle.js"
+    path: path.join(__dirname, "src/renderer/dist"),
+    publicPath: "./dist/",
+    filename: "renderer.prod.js"
   },
   module: {
     loaders: [
