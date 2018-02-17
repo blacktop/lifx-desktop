@@ -2,15 +2,17 @@
   "name": "lifx-desktop",
   "version": "1.0.0",
   "description": "LIFX Desktop electron-app",
-  "main": "index.js",
+  "main": "src/main/index.js",
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
-    "electron": "cross-env NODE_ENV=development electron src/main",
+    "electron": "yarn build && cross-env NODE_ENV=development electron src/main",
     "dev": "cross-env NODE_ENV=development electron-webpack dev",
     "compile": "electron-webpack",
-    "dist": "yarn compile && electron-builder",
+    "pack": "electron-builder --dir",
+    "dist": "yarn build && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "postinstall": "electron-builder install-app-deps",
     "test": "mocha"
   },
   "electronWebpack": {
@@ -33,20 +35,6 @@
         "github"
       ],
       "category": "public.app-category.productivity"
-    },
-    "win": {
-      "publish": [
-        "github"
-      ],
-      "certificateFile": "private/lifx-desktop.pfx",
-      "verifyUpdateCodeSignature": false,
-      "publisherName": "lifx-desktop"
-    },
-    "linux": {
-      "publish": [
-        "github"
-      ],
-      "category": "Network"
     }
   },
   "repository": "https://github.com/blacktop/lifx-desktop.git",
@@ -64,6 +52,7 @@
     "webpack-build-notifier": "^0.1.22"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.0",
